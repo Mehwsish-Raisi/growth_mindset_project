@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from io import BytesIO
 
-st.set_page_config(page_title="Data sweeper", layout='wide')
+st.set_page_config(page_title="💿Data sweeper", layout='wide')
 st.title('Data Sweeper')
 st.write('Transform your files between CSV and Excel formats with built-in data cleaning and visualization!')
 
@@ -28,11 +28,11 @@ if uploaded_files:
         st.write(f'**File Size:** {file.size/1024}')
 
         # Show 5 rows of our df
-        st.write("Preview the Head of the Dataframe")
+        st.write("🔩Preview the Head of the Dataframe")
         st.dataframe(df.head())
 
         # Options for data cleaning
-        st.subheader('Data Cleaning Options')
+        st.subheader('🔍Data Cleaning Options')
         if st.checkbox(f'Clean Data for {file.name}'):
             col1, col2 = st.columns(2)
 
@@ -50,19 +50,19 @@ if uploaded_files:
 
          
          # Choose Specific Columns to keep or convert
-            st.subheader('Select Columns to Convert')
+            st.subheader('🎯Select Columns to Convert')
             columns = st.multiselect(f'Choose columns for {file.name}', df.columns, default=df.columns)
             df = df[columns]
 
 
             # Create visualizations
-            st.subheader('Data Visualization')
+            st.subheader('📉Data Visualization')
             if st.checkbox(f'Show Visualization for {file.name}'):
                 st.bar_chart(df.select_dtypes(include='number').iloc[:,:2])
 
 
             # Convert CSV file into Excel
-            st.subheader('Conversion Options')
+            st.subheader('🔗Conversion Options')
             conversion_type = st.radio(f'Convert {file.name} to:',['CSV','Excel'], key=file.name)
             if st.button(f'Convert {file.name}'):
                 buffer = BytesIO()   
@@ -86,4 +86,4 @@ if uploaded_files:
                     file_name=file_name,
                     mime=mime_type
                 )    
-        st.success('All files processed')        
+        st.success('🎇All files processed')        
